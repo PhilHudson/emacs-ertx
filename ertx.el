@@ -4,7 +4,7 @@
 
 ;; Author: Nic Ferrier <nferrier@ferrier.me.uk>
 ;; Keywords: lisp
-;; Version: 0.0.1
+;; Version: 0.0.2
 ;; Url: https://github.com/nicferrier/emacs-ertx
 
 ;; This program is free software; you can redistribute it and/or modify
@@ -35,6 +35,8 @@
 
 ;;  C-c t -- to jump to run a test when you are in it's definition
 ;;  C-c . -- to re-run the last test
+
+;; You can customize these key bindings.
 
 ;; A useful thing to do is to add ertx to the emacs-lisp hook so it's
 ;; always available in your emacs-lisp buffers:
@@ -69,6 +71,20 @@
   (interactive)
   (ert (car ert--selector-history)))
 
+(defgroup ertx nil "ERT extensions" :prefix "ertx")
+
+(defcustom ertx-this-defun-key (kbd "C-c t")
+  "Key binding for `ertx-this-defun'."
+  :group 'ertx
+  :tag "Key to run test under point"
+  :type '(key-sequence))
+  
+(defcustom ertx-run-last-key (kbd "C-c .")
+  "Key binding for `ertx-run-last'."
+  :group 'ertx
+  :tag "Key to run last test again"
+  :type '(key-sequence)
+  
 ;;;###autoload
 (define-minor-mode ertx-mode 
     "Enable extra ert features like \"run this test\"."
